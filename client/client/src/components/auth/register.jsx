@@ -35,54 +35,84 @@ const Register = () => {
     }
   };
 
+  const waveStyle = {
+    position: "relative",
+    minHeight: "100vh",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "black",
+    overflow: "hidden",
+  };
+
+  const waveAnimation = {
+    content: '""',
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "200%",
+    height: "200%",
+    background: "radial-gradient(circle, rgba(0, 0, 0, 0.5) 25%, white 100%)",
+    animation: "move-waves 8s linear infinite",
+    zIndex: 1,
+  };
+
+  const waveAnimationAfter = {
+    ...waveAnimation,
+    animationDelay: "4s",
+  };
+
+  const loginContainerStyle = {
+    position: "relative",
+    zIndex: 2,
+    width: "600px",
+    background: "rgba(255, 255, 255, 0.9)",
+    backdropFilter: "blur(10px)",
+    padding: "30px",
+    borderRadius: "15px",
+    boxShadow: "0 10px 20px rgba(0, 0, 0, 0.3)",
+  };
+
+  const loginTitleStyle = {
+    textAlign: "center",
+    color: "#333",
+    fontSize: "2rem",
+    fontWeight: "bold",
+    marginBottom: "30px",
+  };
+
+  const alertStyle = {
+    textAlign: "center",
+    fontWeight: "bold",
+    marginBottom: "20px",
+  };
+
+  const alertSuccessStyle = {
+    color: "green",
+  };
+
+  const alertErrorStyle = {
+    color: "red",
+  };
+
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        background: "url('https://your-image-url.com/image.jpg') no-repeat center center",
-        backgroundSize: "cover",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        fontFamily: "'Roboto', sans-serif",
-        padding: "20px",
-      }}
-    >
-      <div
-        className="card shadow-lg p-5"
-        style={{
-          width: "600px",
-          borderRadius: "15px",
-          background: "rgba(255, 255, 255, 0.9)",
-          backdropFilter: "blur(10px)",
-          boxShadow: "0 10px 20px rgba(0, 0, 0, 0.3)",
-        }}
-      >
-        <h2
-          className="text-center mb-5"
-          style={{
-            color: "#4a4a4a",
-            fontSize: "2rem",
-            fontWeight: "bold",
-            textAlign: "center",
-            marginBottom: "30px",
-          }}
-        >
-          Create an Account
-        </h2>
+    <div style={waveStyle}>
+      <div style={waveAnimation} />
+      <div style={waveAnimationAfter} />
+      <div style={loginContainerStyle}>
+        <h2 style={loginTitleStyle}>Create an Account</h2>
         {message && (
           <div
-            className="alert text-center mb-4"
             style={{
-              color: message.includes("successful") ? "green" : "red",
-              fontWeight: "bold",
+              ...alertStyle,
+              ...(message.includes("successful") ? alertSuccessStyle : alertErrorStyle),
             }}
           >
             {message}
           </div>
         )}
         <form onSubmit={handleRegister}>
-          {/* Username */}
+          {/* Username Field */}
           <div className="mb-4">
             <TextField
               fullWidth
@@ -98,12 +128,10 @@ const Register = () => {
                 ),
               }}
             />
-          
           </div>
-          <br/>
-          <br/>
-
-          {/* Email */}
+            <br/>
+            <br/>
+          {/* Email Field */}
           <div className="mb-4">
             <TextField
               fullWidth
@@ -121,9 +149,9 @@ const Register = () => {
               }}
             />
           </div>
-          <br/>
-          <br/>
-          {/* Password */}
+             <br/>
+             <br/>
+          {/* Password Field */}
           <div className="mb-4">
             <TextField
               fullWidth
@@ -140,10 +168,7 @@ const Register = () => {
                 ),
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton
-                      onClick={() => setShowPassword(!showPassword)}
-                      edge="end"
-                    >
+                    <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
                       {showPassword ? <Visibility /> : <VisibilityOff />}
                     </IconButton>
                   </InputAdornment>
@@ -151,9 +176,9 @@ const Register = () => {
               }}
             />
           </div>
-          <br/>
-          <br/>
-          {/* Confirm Password */}
+            <br/>
+            <br/>
+          {/* Confirm Password Field */}
           <div className="mb-4">
             <TextField
               fullWidth
@@ -170,12 +195,7 @@ const Register = () => {
                 ),
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton
-                      onClick={() =>
-                        setShowConfirmPassword(!showConfirmPassword)
-                      }
-                      edge="end"
-                    >
+                    <IconButton onClick={() => setShowConfirmPassword(!showConfirmPassword)} edge="end">
                       {showConfirmPassword ? <Visibility /> : <VisibilityOff />}
                     </IconButton>
                   </InputAdornment>
@@ -183,8 +203,8 @@ const Register = () => {
               }}
             />
           </div>
-          <br/>
-          <br/>
+            <br/>
+            <br/>
           {/* Submit Button */}
           <Box display="flex" justifyContent="center">
             <Button
@@ -204,8 +224,6 @@ const Register = () => {
               {loading ? <CircularProgress size={20} color="inherit" /> : "Register"}
             </Button>
           </Box>
-          <br/>
-          <br/>
         </form>
       </div>
     </div>
