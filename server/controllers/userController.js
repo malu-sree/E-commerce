@@ -100,4 +100,9 @@ const getUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { registerUser, loginUser, getUserProfile };
+// Test route
+const testRoute = asyncHandler(async (req, res) => {
+  res.status(200).json({ message: 'Test route is working', user: req.user });
+});
+
+module.exports = { registerUser, loginUser,testRoute, getUserProfile };
