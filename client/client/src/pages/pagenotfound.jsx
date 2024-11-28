@@ -65,7 +65,7 @@ const Pagenotfound = () => {
   };
 
   return (
-    <Layout>
+    <Layout title={"page not found"}>
       <div className="pnf" style={pnfContainer}>
         <h1 className="pnf-title" style={titleStyle}>404</h1>
         <h2 className="pnf-heading" style={headingStyle}>Oops! Page Not Found</h2>

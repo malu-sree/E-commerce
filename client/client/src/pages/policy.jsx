@@ -67,7 +67,7 @@ const Policy = () => {
   };
 
   return (
-    <Layout>
+    <Layout title={"policy"}>
       <div className="row" style={{ display: "flex", justifyContent: "center", alignItems: "center", marginTop: "50px" }}>
         <div className="col-md-6" style={{ padding: "20px" }}>
           <img src={img3} alt="Privacy Policy" style={imageStyle} />

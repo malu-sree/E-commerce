@@ -79,7 +79,7 @@ const About = () => {
   };
 
   return (
-    <Layout>
+    <Layout title={"About us-Ecommerce App"} >
       <div className="row contactus" style={{ display: "flex", alignItems: "center", justifyContent: "center", marginTop: "50px" }}>
         <div className="col-md-6">
           <img src={img1} alt="About Us" style={imageStyle} />

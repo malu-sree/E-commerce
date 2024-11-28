@@ -100,7 +100,7 @@ const Contact = () => {
   };
 
   return (
-    <Layout>
+    <Layout title={"Contact us"}>
       <div className="contactus" style={contactContainerStyle}>
         <div className="col-md-6">
           <img
