@@ -7,7 +7,8 @@ import About from './pages/about';
 import Contact from './pages/contact';
 import Policy from './pages/policy';
 import Pagenotfound from './pages/pagenotfound';
-
+import Dashboard from "./pages/dashboard";  
+import PrivateRoute from './components/layout/privateRoute';
 function App() {
   return (
     <div>
@@ -17,11 +18,15 @@ function App() {
       <Route path='/' element={<HomePage/>}/>
       <Route path="/register" element={<Register />} />
       <Route path='/login' element={<Login/>}/>
+      
       <Route path="/contact" element={<Contact />} />
       <Route path="/about" element={<About />} />
       <Route path="/policy" element={<Policy/>} />
       <Route path="*" element={<Pagenotfound/>} />
-     
+      <Route path="/dashboard" element={<PrivateRoute />}>
+            <Route path="" element={<Dashboard />} />
+          </Route>
+        <Route path="*" element={<Pagenotfound />} />
 
      </Routes>
     

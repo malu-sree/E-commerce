@@ -169,7 +169,7 @@ const Register = () => {
             className="btn btn-primary"
             style={buttonStyle}
           >
-            REGISTER
+           SIGN UP
           </button>
         </form>
       </div>

@@ -1,5 +1,5 @@
 const express = require('express');
-const { registerUser, loginUser,testRoute, getUserProfile } = require('../controllers/userController');
+const { registerUser, loginUser,testRoute,getDashboardData, getUserProfile } = require('../controllers/userController');
 // const { protect } = require('../middleware/authMiddleware');
 const { protect, admin } = require('../middleware/authMiddleware');
 
@@ -13,4 +13,12 @@ router.get('/test', protect, testRoute);
 router.get('/admin', protect, admin, (req, res) => {
     res.json({ message: "Welcome Admin!" });
   });
-module.exports = router;
+
+ //router.get('/dashboard', protect, getDashboardData); // Get dashboard data for the logged-in user
+
+  //protected route auth
+router.get("/dash", protect, (req, res) => {
+  res.status(200).send({ ok: true });
+});
+
+ module.exports = router;

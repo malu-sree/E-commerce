@@ -100,9 +100,42 @@ const getUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc    Get user dashboard data
+// @route   GET /api/users/dashboard
+// @access  Private
+const getDashboardData = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id);
+
+  if (user) {
+    // Example of dashboard data
+    const dashboardData = {
+      message: 'Welcome to your Dashboard!',
+      userStats: {
+        totalOrders: 5, // Example: total number of orders
+        totalSpend: 500, // Example: total money spent by the user
+        recentActivity: 'Bought a new laptop', // Example: recent activity
+      },
+      userInfo: {
+        name: user.name,
+        email: user.email,
+        phone: user.phone,
+        address: user.address,
+      },
+    };
+
+    res.json(dashboardData);
+  } else {
+    res.status(404);
+    throw new Error('User not found');
+  }
+});
+
+
+
+
 // Test route
 const testRoute = asyncHandler(async (req, res) => {
   res.status(200).json({ message: 'Test route is working', user: req.user });
 });
 
-module.exports = { registerUser, loginUser,testRoute, getUserProfile };
+module.exports = { registerUser, loginUser,testRoute, getUserProfile,getDashboardData };
