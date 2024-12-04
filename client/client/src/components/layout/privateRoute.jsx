@@ -38,9 +38,11 @@
 
 import { useState, useEffect } from "react";
 import { useAuth } from "../../context/authContext"; // Ensure this import is correct
-import { Outlet } from "react-router-dom";
+import { Outlet, Route, Routes } from "react-router-dom";
 import axios from "axios";
 import Spinner from "./spinner";
+import About from "../../pages/about";
+import Dashboard from "../../pages/dashboard";
 
 export default function PrivateRoute() {
   const [ok, setOk] = useState(false);
@@ -71,7 +73,19 @@ export default function PrivateRoute() {
     }
   }, [token]); // Add token as dependency to re-run effect on token change
 
-  return ok ? <Outlet /> : <Spinner />;
+  return (
+    <>
+    <a href="/dashboard/abouts">Abouts</a>
+    <a href="/dashboard/dashs">dashboard</a>
+    <Routes>
+      <Route path="/abouts" element={<About/>}/>
+    </Routes>
+    <Routes>
+      <Route path="/dashs" element={<Dashboard/>}/>
+    </Routes>
+    </>
+  )
+
 }
 
 

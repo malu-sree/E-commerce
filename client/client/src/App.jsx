@@ -23,8 +23,8 @@ function App() {
       <Route path="/about" element={<About />} />
       <Route path="/policy" element={<Policy/>} />
       <Route path="*" element={<Pagenotfound/>} />
-      <Route path="/dashboard" element={<PrivateRoute />}>
-            <Route path="" element={<Dashboard />} />
+      <Route path="/dashboard/*" element={<PrivateRoute />}>
+            
           </Route>
         <Route path="*" element={<Pagenotfound />} />
 
