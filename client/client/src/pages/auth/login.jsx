@@ -214,6 +214,17 @@ const Login = () => {
     cursor: "pointer",
   };
 
+  const forgotPasswordStyle = {
+    marginTop: "20px",
+    textAlign: "center",
+    cursor: "pointer",
+    color: "#007bff",
+    textDecoration: "underline",
+    background: "none",
+    border: "none",
+    fontSize: "16px",
+  };
+
   // Form submission function
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -314,6 +325,16 @@ const Login = () => {
           >
             LOGIN
           </button>
+
+          {/* Forgot Password Button */}
+          <button
+            type="button"
+            style={forgotPasswordStyle}
+            onClick={() => navigate("/forgot-password")}
+          >
+            Forgot Password?
+          </button>
+
         </form>
       </div>
     </Layout>

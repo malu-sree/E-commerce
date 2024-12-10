@@ -7,7 +7,12 @@ const jwt = require('jsonwebtoken');
 // @route   POST /api/users/register
 // @access  Public
 const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password, phone, address } = req.body;
+  const { name, email, password, phone, address,answer } = req.body;
+ 
+  // Check if the 'answer' field is provided
+ if (!answer) {
+  return res.status(400).json({ message: "Answer is required" });
+}
 
   const userExists = await User.findOne({ email });
 
@@ -24,6 +29,7 @@ const registerUser = asyncHandler(async (req, res) => {
     password: hashedPassword,
     phone,
     address,
+    answer
   });
 
   if (user) {
@@ -131,6 +137,49 @@ const getDashboardData = asyncHandler(async (req, res) => {
 });
 
 
+// @desc    Forgot Password
+// @route   POST /api/users/forgot-password
+// @access  Public
+const forgotPasswordController = asyncHandler(async (req, res) => {
+  try {
+    const { email, answer, newPassword } = req.body;
+
+    if (!email) {
+      return res.status(400).send({ message: 'Email is required' });
+    }
+    if (!answer) {
+      return res.status(400).send({ message: 'Answer is required' });
+    }
+    if (!newPassword) {
+      return res.status(400).send({ message: 'New Password is required' });
+    }
+
+    const user = await User.findOne({ email, answer });
+
+    if (!user) {
+      return res.status(404).send({
+        success: false,
+        message: 'Wrong Email or Answer',
+      });
+    }
+
+    const hashed = await hashPassword(newPassword);
+    await User.findByIdAndUpdate(user._id, { password: hashed });
+
+    res.status(200).send({
+      success: true,
+      message: 'Password Reset Successfully',
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({
+      success: false,
+      message: 'Something went wrong',
+      error,
+    });
+  }
+});
+
 
 
 // Test route
@@ -138,4 +187,4 @@ const testRoute = asyncHandler(async (req, res) => {
   res.status(200).json({ message: 'Test route is working', user: req.user });
 });
 
-module.exports = { registerUser, loginUser,testRoute, getUserProfile,getDashboardData };
+module.exports = { registerUser, loginUser,testRoute, getUserProfile,getDashboardData,forgotPasswordController };

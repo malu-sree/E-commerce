@@ -17,6 +17,7 @@ const Register = () => {
   const [address, setAddress] = useState("");
   const [message, setMessage] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);  // State for password visibility
+  const [answer, setAnswer] = useState("");
   const navigate = useNavigate();
 
   // Inline style for form-container background
@@ -71,6 +72,7 @@ const Register = () => {
         password,
         phone,
         address,
+        answer
       });
       if (res && res.status === 201) {
         setMessage("User registered successfully!");
@@ -164,6 +166,18 @@ const Register = () => {
             </div>
           </div>
 
+          <div className="mb-3" style={{ display: "flex", alignItems: "center", marginBottom: "15px" }}>
+            <input
+              type="text"
+              value={answer}
+              onChange={(e) => setAnswer(e.target.value)}
+              className="form-control"
+            
+              placeholder="What is Your Favorite sports"
+              required
+              style={inputStyle}
+            />
+   </div>
           <button
             type="submit"
             className="btn btn-primary"

@@ -8,7 +8,8 @@ import Contact from './pages/contact';
 import Policy from './pages/policy';
 import Pagenotfound from './pages/pagenotfound';
 import Dashboard from "./pages/dashboard";  
-import PrivateRoute from './components/layout/privateRoute';
+// import PrivateRoute from './components/layout/privateRoute';
+import ForgotPassword from './pages/auth/forgotPassword';
 function App() {
   return (
     <div>
@@ -18,16 +19,16 @@ function App() {
       <Route path='/' element={<HomePage/>}/>
       <Route path="/register" element={<Register />} />
       <Route path='/login' element={<Login/>}/>
-      
+      <Route path='/forgot-password' element={<ForgotPassword/>}/>
       <Route path="/contact" element={<Contact />} />
       <Route path="/about" element={<About />} />
       <Route path="/policy" element={<Policy/>} />
       <Route path="*" element={<Pagenotfound/>} />
-      <Route path="/dashboard/*" element={<PrivateRoute />}>
+      {/* <Route path="/dashboard/*" element={<PrivateRoute />}>
             
           </Route>
-        <Route path="*" element={<Pagenotfound />} />
-
+        <Route path="*" element={<Pagenotfound />} /> */}
+<Route path='/dash' element={<Dashboard/>}/>
      </Routes>
     
     </div>

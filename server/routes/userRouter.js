@@ -1,5 +1,5 @@
 const express = require('express');
-const { registerUser, loginUser,testRoute,getDashboardData, getUserProfile } = require('../controllers/userController');
+const { registerUser, loginUser,testRoute,getDashboardData, getUserProfile,forgotPasswordController } = require('../controllers/userController');
 // const { protect } = require('../middleware/authMiddleware');
 const { protect, admin } = require('../middleware/authMiddleware');
 
@@ -15,6 +15,9 @@ router.get('/admin', protect, admin, (req, res) => {
   });
 
  //router.get('/dashboard', protect, getDashboardData); // Get dashboard data for the logged-in user
+ 
+ // Define the forgot-password route
+router.post('/forgot-password', forgotPasswordController);
 
   //protected route auth
 router.get("/dash", protect, (req, res) => {
