@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 // @route   POST /api/users/register
 // @access  Public
 const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password, phone, address,answer } = req.body;
+  const { name, email, password, phone, address,answer,isAdmin } = req.body;
  
   // Check if the 'answer' field is provided
  if (!answer) {
@@ -29,7 +29,9 @@ const registerUser = asyncHandler(async (req, res) => {
     password: hashedPassword,
     phone,
     address,
-    answer
+    answer,
+    isAdmin: isAdmin || false
+    
   });
 
   if (user) {
