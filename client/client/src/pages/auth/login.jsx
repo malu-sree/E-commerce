@@ -237,14 +237,21 @@ const Login = () => {
       if (res && res.data.token) {
         // Store the token in localStorage
         localStorage.setItem("token", res.data.token);
+        localStorage.setItem('isAdmin', res.data.isAdmin);
 
         // Optionally, store the user data in context or update the global state
         login(res.data);
 
         setMessage("Login successful!");
 
+        if (res.data.isAdmin) {
+          navigate('/admin/dashboard');
+        } else {
+          navigate('/user/dashboard');
+        }
+
         // Redirect to the previous page or the dashboard after successful login
-        setTimeout(() => navigate(location.state || "/"), 2000); 
+        // setTimeout(() => navigate(location.state || "/"), 2000); 
       } else {
         setMessage(res.data?.message || "Failed to login.");
       }
