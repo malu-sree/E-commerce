@@ -2,7 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const userRoutes = require('./routes/userRouter');
-
+const categoryRoutes = require('./routes/categoryRoutes');
 const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 const cors = require('cors');
 
@@ -22,6 +22,8 @@ app.use(express.urlencoded({ extended: true }))
 
 // API Routes
 app.use('/api/users', userRoutes);
+app.use('/api/category', categoryRoutes); // Category routes
+
 
 
 // Error handling middlewares
