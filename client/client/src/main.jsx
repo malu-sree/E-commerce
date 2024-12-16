@@ -21,6 +21,7 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./context/authContext"; // Import AuthProvider
 import "./index.css"; // Import global styles
+// import 'antd/dist/antd.css';  // Import Ant Design styles globally
 
 const root = createRoot(document.getElementById("root"));
 
