@@ -1,6 +1,7 @@
 
 
 
+
 // import React, { useState, useEffect } from "react";
 // import AdminMenu from "../../components/layout/adminMenu";
 // import Layout from "./../../components/Layout/Layout";
@@ -48,7 +49,7 @@
 //             {products?.map((p) => (
 //               <div key={p._id} className="col-md-4 mb-4">
 //                 <Link
-//                   to={`/dashboard/admin/products/${p.slug}`}
+//                   to={`admin/dashboard/products/${p.slug}`}
 //                   className="text-decoration-none text-dark"
 //                 >
 //                   <div className="card h-100 shadow-sm border-0">
@@ -56,7 +57,7 @@
 //                       src={`http://localhost:5001/api/product/product-photo/${p._id}`}
 //                       className="card-img-top"
 //                       alt={p.name}
-//                       style={{ height: "200px", objectFit: "cover" }}
+//                       style={{ height: "320px", objectFit: "cover" }} // Increased height
 //                     />
 //                     <div className="card-body d-flex flex-column">
 //                       <h5 className="card-title">{p.name}</h5>
@@ -86,7 +87,6 @@
 // };
 
 // export default Products;
-
 
 
 import React, { useState, useEffect } from "react";
@@ -136,7 +136,7 @@ const Products = () => {
             {products?.map((p) => (
               <div key={p._id} className="col-md-4 mb-4">
                 <Link
-                  to={`/dashboard/admin/products/${p.slug}`}
+                  to={`/admin/dashboard/update-product/${p.slug}`} // Redirect to update page
                   className="text-decoration-none text-dark"
                 >
                   <div className="card h-100 shadow-sm border-0">
@@ -144,7 +144,7 @@ const Products = () => {
                       src={`http://localhost:5001/api/product/product-photo/${p._id}`}
                       className="card-img-top"
                       alt={p.name}
-                      style={{ height: "320px", objectFit: "cover" }} // Increased height
+                      style={{ height: "320px", objectFit: "cover" }}
                     />
                     <div className="card-body d-flex flex-column">
                       <h5 className="card-title">{p.name}</h5>
@@ -154,7 +154,7 @@ const Products = () => {
                           : p.description}
                       </p>
                       <div className="mt-auto">
-                        <button className="btn btn-primary w-100">View Details</button>
+                        <button className="btn btn-primary w-100">Update Product</button>
                       </div>
                     </div>
                   </div>
