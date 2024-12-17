@@ -18,6 +18,7 @@ import CreateCategory from './pages/admin/createCategory';
 import Users from './pages/admin/users';
 import Orders from './pages/orders';
 import Profile from './pages/profile';
+import Products from './pages/admin/products';
 function App() {
   return (
     <div>
@@ -59,6 +60,7 @@ function App() {
         <Route index element={<AdminDashboard />} /> {/* Use index for default child */}
         <Route path="create-product" element={<CreateProduct/>}/>
         <Route path='create-category' element={<CreateCategory/>}/>
+        <Route path='products' element={<Products/>}/>
         <Route path='users' element={<Users/>}/>
 
       </Route>
