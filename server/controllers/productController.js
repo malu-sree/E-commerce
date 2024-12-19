@@ -430,4 +430,83 @@ const updateProductController = async (req, res) => {
   }
 };
 
-module.exports = { createProductController, getProductController, getSingleProductController, productPhotoController, deleteProductController, updateProductController };
+// Get products by category name
+const getProductsByCategoryName = async (req, res) => {
+  try {
+    const categoryName = req.params.categoryName; // Get category name from URL parameter
+
+    // Find the category by name
+    const category = await Category.findOne({ name: categoryName });
+
+    if (!category) {
+      return res.status(404).send({
+        success: false,
+        message: "Category not found",
+      });
+    }
+
+    // Find products in this category
+    const products = await productModel
+      .find({ category: category._id }) // Use category's _id
+      .populate("category") // Populate category details
+      .select("-photo") // Exclude photo field
+      .limit(12) // Optionally limit the number of products
+      .sort({ createdAt: -1 }); // Sort by latest created
+
+    res.status(200).send({
+      success: true,
+      countTotal: products.length,
+      message: "Products fetched successfully by category",
+      products,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({
+      success: false,
+      message: "Error fetching products by category",
+      error: error.message,
+    });
+  }
+};
+
+// Get all products with pagination (Load More Setup)
+const getProducts = async (req, res) => {
+  try {
+    // Extract page and limit from query parameters with default values
+    const page = parseInt(req.query.page) || 1; // Default to page 1
+    const limit = parseInt(req.query.limit) || 10; // Default to 10 products per page
+
+    // Calculate the number of documents to skip
+    const skip = (page - 1) * limit;
+
+    // Fetch total count of products for front-end "load more" logic
+    const totalProducts = await productModel.countDocuments({});
+
+    // Fetch the products with pagination
+    const products = await productModel
+      .find({})
+      .populate("category") // Populate category details
+      .select("-photo") // Exclude photo field
+      .skip(skip) // Skip the first "skip" products
+      .limit(limit) // Limit the results to "limit" products
+      .sort({ createdAt: -1 }); // Sort by latest created
+
+    // Send the response with pagination metadata
+    res.status(200).send({
+      success: true,
+      totalProducts, // Total number of products in the database
+      currentPage: page, // Current page
+      totalPages: Math.ceil(totalProducts / limit), // Total number of pages
+      products, // The actual products for the current page
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error in fetching products",
+      error: error.message,
+    });
+  }
+};
+
+module.exports = { createProductController, getProductController, getSingleProductController, productPhotoController, deleteProductController, updateProductController,getProductsByCategoryName,getProducts };

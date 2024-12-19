@@ -144,7 +144,7 @@ const Products = () => {
                       src={`http://localhost:5001/api/product/product-photo/${p._id}`}
                       className="card-img-top"
                       alt={p.name}
-                      style={{ height: "320px", objectFit: "cover" }}
+                      style={{ height: "400px", objectFit: "cover" }}
                     />
                     <div className="card-body d-flex flex-column">
                       <h5 className="card-title">{p.name}</h5>

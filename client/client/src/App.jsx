@@ -20,6 +20,7 @@ import Orders from './pages/orders';
 import Profile from './pages/profile';
 import Products from './pages/admin/products';
 import UpdateProduct from './pages/admin/updateProduct';
+// import CategoryProducts from './pages/categoryProducts';
 function App() {
   return (
     <div>
@@ -27,6 +28,8 @@ function App() {
      <Routes>
       
       <Route path='/' element={<HomePage/>}/>
+      {/* <Route path="/category/:categoryName" element={<CategoryProducts />} /> Add route for CategoryProducts */}
+    
       <Route path="/register" element={<Register />} />
       <Route path='/login' element={<Login/>}/>
       <Route path='/forgot-password' element={<ForgotPassword/>}/>

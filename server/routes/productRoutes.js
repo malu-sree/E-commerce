@@ -51,6 +51,8 @@ const {
   productPhotoController,
   deleteProductController,
   updateProductController,
+  getProductsByCategoryName,
+  getProducts
 } = require("../controllers/productController");
 const { protect, admin } = require("../middleware/authMiddleware");
 const multer = require("multer");
@@ -90,6 +92,7 @@ router.get("/product-photo/:pid", productPhotoController);
 // Delete product by ID
 router.delete("/delete-product/:pid", protect, admin, deleteProductController);
 
+// router.get("/get-by-category-name/:categoryName", getProductsByCategoryName);
 // Update product by ID
 router.put(
   "/update-product/:pid",
@@ -98,5 +101,9 @@ router.put(
   upload.single('photo'), // Handle file upload using multer
   updateProductController
 );
+
+// Route for getting paginated products
+router.get("/get-product", getProducts);
+
 
 module.exports = router;

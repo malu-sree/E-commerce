@@ -29,6 +29,17 @@ app.use('/api/users', userRoutes);
 app.use('/api/category', categoryRoutes); // Category routes
 app.use("/api/product", productRoutes);
 
+// app.get('/api/product/get-by-category/:categoryId', async (req, res) => {
+//   try {
+//     const { categoryId } = req.params;
+//     const products = await Product.find({ category: categoryId }); // Assuming your Product model has a `category` field
+//     res.json({ success: true, products });
+//   } catch (error) {
+//     res.status(500).json({ success: false, message: 'Error fetching products', error });
+//   }
+// });
+
+
 
 // Error handling middlewares
 app.use(notFound);
