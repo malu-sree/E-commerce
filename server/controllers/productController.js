@@ -214,6 +214,7 @@
 
 
 const productModel = require("../models/productModel");
+const categoryModel=require("../models/categoryModel")
 const fs = require("fs");
 const slugify = require("slugify");
 
