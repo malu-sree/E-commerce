@@ -509,4 +509,69 @@ const getProducts = async (req, res) => {
   }
 };
 
-module.exports = { createProductController, getProductController, getSingleProductController, productPhotoController, deleteProductController, updateProductController,getProductsByCategoryName,getProducts };
+const searchProductController = async (req, res) => {
+  try {
+    const { keyword } = req.params;
+    const resutls = await productModel
+      .find({
+        $or: [
+          { name: { $regex: keyword, $options: "i" } },
+          { description: { $regex: keyword, $options: "i" } },
+        ],
+      })
+      .select("-photo");
+    res.json(resutls);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      message: "Error In Search Product API",
+      error,
+    });
+  }
+};
+
+const realtedProductController = async (req, res) => {
+  try {
+    const { pid, cid } = req.params;
+    const products = await productModel
+      .find({
+        category: cid,
+        _id: { $ne: pid }, // Exclude the current product
+      })
+      .select("-photo") // Exclude photo field to optimize query
+      .limit(3) // Limit results to 3 similar products
+      .populate("category"); // Populate category details
+    res.status(200).send({
+      success: true,
+      products,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      message: "Error while fetching related products",
+      error,
+    });
+  }
+};
+ const productCategoryController = async (req, res) => {
+  try {
+    const category = await categoryModel.findOne({ slug: req.params.slug });
+    const products = await productModel.find({ category }).populate("category");
+    res.status(200).send({
+      success: true,
+      category,
+      products,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      error,
+      message: "Error While Getting products",
+    });
+  }
+};
+
+module.exports = { createProductController, getProductController, getSingleProductController, productPhotoController, deleteProductController, updateProductController,getProductsByCategoryName,getProducts,searchProductController,realtedProductController,productCategoryController };

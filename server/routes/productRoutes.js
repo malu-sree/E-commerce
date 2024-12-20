@@ -52,7 +52,10 @@ const {
   deleteProductController,
   updateProductController,
   getProductsByCategoryName,
-  getProducts
+  getProducts,
+  searchProductController,
+  realtedProductController,
+  productCategoryController
 } = require("../controllers/productController");
 const { protect, admin } = require("../middleware/authMiddleware");
 const multer = require("multer");
@@ -104,6 +107,16 @@ router.put(
 
 // Route for getting paginated products
 router.get("/get-product", getProducts);
+
+// Search Product Route
+router.get('/search/:keyword', searchProductController);
+
+
+// Route to fetch related products
+router.get("/similar-products/:pid/:cid", realtedProductController);
+
+//category wise product
+router.get("/product-category/:slug", productCategoryController);
 
 
 module.exports = router;

@@ -21,6 +21,7 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./context/authContext"; // Import AuthProvider
 import "./index.css"; // Import global styles
+import { SearchProvider } from "./context/search";
 // import 'antd/dist/antd.css';  // Import Ant Design styles globally
 
 const root = createRoot(document.getElementById("root"));
@@ -28,9 +29,11 @@ const root = createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <AuthProvider> {/* Wrap the app with AuthProvider */}
+      <SearchProvider>
       <BrowserRouter> {/* Wrap the app with BrowserRouter */}
         <App />
       </BrowserRouter>
+      </SearchProvider>
     </AuthProvider>
   </React.StrictMode>
 );

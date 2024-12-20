@@ -20,6 +20,10 @@ import Orders from './pages/orders';
 import Profile from './pages/profile';
 import Products from './pages/admin/products';
 import UpdateProduct from './pages/admin/updateProduct';
+import Search from './pages/searching';
+import ProductDetails from './pages/productDetails';
+import Categories from './pages/categories';
+import CategoryProduct from './pages/categoryProduct';
 // import CategoryProducts from './pages/categoryProducts';
 function App() {
   return (
@@ -28,8 +32,10 @@ function App() {
      <Routes>
       
       <Route path='/' element={<HomePage/>}/>
-      {/* <Route path="/category/:categoryName" element={<CategoryProducts />} /> Add route for CategoryProducts */}
-    
+     <Route path='/product/:slug' element={<ProductDetails/>}/>
+     <Route path='/category/:slug' element={<CategoryProduct/>}/>
+     <Route path='/category' element={<Categories/>}/>
+    <Route path='/search' element={<Search/>}/>
       <Route path="/register" element={<Register />} />
       <Route path='/login' element={<Login/>}/>
       <Route path='/forgot-password' element={<ForgotPassword/>}/>
