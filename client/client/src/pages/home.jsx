@@ -1518,7 +1518,7 @@ const HomePage = () => {
                 justifyContent: "center",
                 height: "400px",
                 background: `url(${img})`,
-                backgroundSize: "cover",
+                backgroundSize: "",
               }}
             >
               <div className="carousel-item active text-center">
@@ -1526,11 +1526,11 @@ const HomePage = () => {
                 <p style={{ color: "#fff" }}>You are logged in. Enjoy browsing our store!</p>
                 {user.isAdmin ? (
                   <Link to="/admin/dashboard">
-                    <button className="btn btn-primary mt-3">Go to Admin Dashboard</button>
+                    <button className="btn btn-success mt-3">Go to Admin Dashboard</button>
                   </Link>
                 ) : (
                   <Link to="/user/dashboard">
-                    <button className="btn btn-primary mt-3">Go to User Dashboard</button>
+                    <button className="btn btn-success mt-3">Go to User Dashboard</button>
                   </Link>
                 )}
               </div>

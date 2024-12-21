@@ -764,8 +764,8 @@ const CartPage = () => {
                   <h4>Current Address</h4>
                   <h5>{user?.address}</h5>
                   <button
-                    className="btn btn-outline-warning"
-                    onClick={() => navigate("/dashboard/user/profile")}
+                    className="btn btn-outline-success"
+                    onClick={() => navigate("/user/dashboard/profile")}
                   >
                     Update Address
                   </button>
@@ -775,14 +775,14 @@ const CartPage = () => {
               <div className="mb-3">
                 {user?.token ? (
                   <button
-                    className="btn btn-outline-warning"
+                    className="btn btn-outline-success"
                     onClick={() => navigate("/dashboard/user/profile")}
                   >
                     Update Address
                   </button>
                 ) : (
                   <button
-                    className="btn btn-outline-warning"
+                    className="btn btn-outline-success"
                     onClick={() =>
                       navigate("/login", {
                         state: "/cart",

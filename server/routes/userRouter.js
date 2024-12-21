@@ -1,5 +1,5 @@
 const express = require('express');
-const { registerUser, loginUser,testRoute,getDashboardData, getUserProfile,forgotPasswordController } = require('../controllers/userController');
+const { registerUser, loginUser,testRoute,getDashboardData, getUserProfile,forgotPasswordController,updateProfileController } = require('../controllers/userController');
 // const { protect } = require('../middleware/authMiddleware');
 const { protect, admin } = require('../middleware/authMiddleware');
 
@@ -44,5 +44,10 @@ router.get('/user/dashboard', protect, (req, res) => {
   // Fetch and return user-specific data (profile, orders)
   res.json({ name: req.user.name, email: req.user.email, orders: [] });
 });
+
+// PUT /api/users/profile - Update profile
+router.put('/profile', protect, updateProfileController);
+
+
 
  module.exports = router;

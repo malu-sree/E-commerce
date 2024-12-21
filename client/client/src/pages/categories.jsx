@@ -58,7 +58,7 @@ function Categories() {
   return (
     <Layout>
       <div className="container mt-4">
-        <h1 className="text-center mb-4">Explore Categories</h1>
+        <h1 className="text-center mb-4">Explore Your World Here</h1>
         <div className="row">
           {categories.length > 0 ? (
             categories.map((category) => (
@@ -80,7 +80,8 @@ function Categories() {
                     </p>
                     <Link
                       to={`/category/${category.slug}`}
-                      style={styles.button}
+                      // style={styles.button}
+                      className="btn btn-info"
                     >
                       View Products
                     </Link>
