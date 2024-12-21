@@ -152,6 +152,7 @@ import SearchInput from "../form/searchInput"; // Import SearchInput
 const Header = () => {
   const { user, logout } = useAuth(); // Destructure user and logout from AuthContext
 
+
   const linkStyle = {
     color: "#fff",
     fontSize: "1.2rem",
@@ -278,7 +279,7 @@ const Header = () => {
                     ...(isActive ? linkHoverStyle : {}),
                   })}
                 >
-                  Cart (0)
+                  Cart 
                 </NavLink>
               </li>
             </ul>

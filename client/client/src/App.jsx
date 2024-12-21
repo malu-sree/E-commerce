@@ -24,7 +24,8 @@ import Search from './pages/searching';
 import ProductDetails from './pages/productDetails';
 import Categories from './pages/categories';
 import CategoryProduct from './pages/categoryProduct';
-// import CategoryProducts from './pages/categoryProducts';
+ import CartPage from './pages/cartPage';
+ // import CategoryProducts from './pages/categoryProducts';
 function App() {
   return (
     <div>
@@ -35,6 +36,7 @@ function App() {
      <Route path='/product/:slug' element={<ProductDetails/>}/>
      <Route path='/category/:slug' element={<CategoryProduct/>}/>
      <Route path='/category' element={<Categories/>}/>
+     <Route path='/cart' element={<CartPage/>}/>
     <Route path='/search' element={<Search/>}/>
       <Route path="/register" element={<Register />} />
       <Route path='/login' element={<Login/>}/>
