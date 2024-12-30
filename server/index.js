@@ -5,6 +5,7 @@ const userRoutes = require('./routes/userRouter');
 const categoryRoutes = require('./routes/categoryRoutes');
 const productRoutes = require("./routes/productRoutes");
 const cartRoutes = require('./routes/cartRoutes'); 
+const orderRoutes = require("./routes/orderRoutes");
 const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 const cors = require('cors');
 
@@ -30,6 +31,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/category', categoryRoutes); // Category routes
 app.use("/api/product", productRoutes);
 app.use('/api/cart', cartRoutes); // Use the cart routes for '/api/cart' endpoint
+app.use("/api/orders", orderRoutes);
 
 // app.get('/api/product/get-by-category/:categoryId', async (req, res) => {
 //   try {

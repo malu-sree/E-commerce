@@ -275,7 +275,7 @@ const Login = () => {
         if (res.data.isAdmin) {
           navigate('/admin/dashboard');
         } else {
-          navigate('/user/dashboard');
+          navigate('/');
         }
 
       } else {

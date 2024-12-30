@@ -1530,7 +1530,7 @@ const HomePage = () => {
                   </Link>
                 ) : (
                   <Link to="/user/dashboard">
-                    <button className="btn btn-success mt-3">Go to User Dashboard</button>
+                    <button className="btn btn-success mt-3">Go to Your Dashboard</button>
                   </Link>
                 )}
               </div>
