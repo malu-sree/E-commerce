@@ -86,4 +86,38 @@ const getUserOrders = async (req, res) => {
 //     }
 //   };
   
-module.exports = { createOrder, getUserOrders };
+
+// Fetch all orders (Admin only)
+const getAllOrders = async (req, res) => {
+  try {
+    const orders = await Order.find().populate("items.productId userId");
+    res.status(200).json({ success: true, orders });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to fetch all orders" });
+  }
+};
+
+// Update order status (Admin only)
+const updateOrderStatus = async (req, res) => {
+  const { orderId } = req.params;
+  const { status } = req.body;
+
+  try {
+    // Validate order
+    const order = await Order.findById(orderId);
+    if (!order) {
+      return res.status(404).json({ success: false, message: "Order not found" });
+    }
+
+    // Update status
+    order.status = status;
+    await order.save();
+
+    res.status(200).json({ success: true, message: "Order status updated successfully", order });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, error: "Failed to update order status" });
+  }
+};
+module.exports = { createOrder, getUserOrders,getAllOrders,updateOrderStatus };
